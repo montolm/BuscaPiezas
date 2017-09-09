@@ -1,3 +1,8 @@
+var url         = 'http://localhost/RegisterParts/index.php/'; //'http://www.devetechnologies.com/RegisterParts/index.php/';
+var folder      = 'helpers/';
+var controller  = 'api_ws/';
+var format      = 'format/';
+var format_type = 'json';       
 
 /*Script para asignar los valores de ciudad y pais en el formulario de registro usuario*/
 $(document).ready(function () {
@@ -50,7 +55,7 @@ function getSystemPart() {
             });
             selectCategory.prop('disabled', false);
         }, error: function () {
-            alert('ERROOOOORRR');
+            alert('ERROR');
         }
     });
 }
@@ -59,7 +64,7 @@ function getSystemPart() {
 function getVehicleMotorTypes() {
     var vehicleMotorType = $('#idSelectVehiMotor');
     $.ajax({
-        url: "http://localhost/registerparts/index.php/helpers/api_ws/vehiclemotortype/format/json",
+        url: url + folder + controller + 'vehiclemotortype/' + format + format_type,//"http://localhost/registerparts/index.php/helpers/api_ws/vehiclemotortype/format/json",
         type: 'GET',
         dataType: 'json',
         cache: false,
@@ -72,7 +77,7 @@ function getVehicleMotorTypes() {
             });
             vehicleMotorType.prop('disabled', false);
         }, error: function () {
-            alert('ERROOOOORRR');
+            alert('ERROR');
         }
     });
 }
@@ -81,7 +86,7 @@ function getVehicleMotorTypes() {
 function getMakes() {
     var makes = $('#idSelectMake');
     $.ajax({
-        url: "http://localhost/registerparts/index.php/helpers/api_ws/makes/format/json",
+        url: url + folder + controller + 'makes/' + format + format_type,//http://localhost/registerparts/index.php/helpers/api_ws/makes/format/json",
         type: 'GET',
         dataType: 'json',
         cache: false,
@@ -94,7 +99,7 @@ function getMakes() {
             });
             makes.prop('disabled', false);
         }, error: function () {
-            alert('ERROOOOORRR');
+            alert('ERROR');
         }
     });
 }
@@ -104,7 +109,7 @@ function getMakes() {
 function getModelFormake(idMake) {
     var model = $('#idSelectModel');
     $.ajax({
-        url: 'http://localhost/registerparts/index.php/helpers/api_ws/modelformake/' + idMake + '/format/json',
+        url: url + folder + controller + 'modelformake/' + idMake + '/' + format + format_type, //'http://localhost/registerparts/index.php/helpers/api_ws/modelformake/' + idMake + '/format/json',
         type: 'GET',
         dataType: 'json',
         cache: false,
@@ -117,7 +122,7 @@ function getModelFormake(idMake) {
             });
             model.prop('disabled', false);
         }, error: function () {
-            alert('ERROOOOORRR');
+            alert('ERROR');
         }
     });
 }
@@ -127,7 +132,7 @@ function getModelFormake(idMake) {
 function getGenerationForModel(idModel) {
     var selectGeneration = $('#idSelectGeneration');
     $.ajax({
-        url: 'http://localhost/registerparts/index.php/helpers/api_ws/generationformodel/' + idModel + '/format/json',
+        url: url + folder + controller + 'generationformodel/'+ idModel + '/' + format + format_type,//'http://localhost/registerparts/index.php/helpers/api_ws/generationformodel/' + idModel + '/format/json',
         type: 'GET',
         dataType: 'json',
         cache: false,
@@ -140,7 +145,7 @@ function getGenerationForModel(idModel) {
             });
             selectGeneration.prop('disabled', false);
         }, error: function () {
-            alert('ERROOOOORRR');
+            alert('ERROR');
         }
     });
 }
@@ -149,7 +154,7 @@ function getGenerationForModel(idModel) {
 function getVehicleType(idVehicleMotor, idVehicleMake, idModel, idGeneration) {
     var selectType = $('#idSelectType');
     $.ajax({
-        url: 'http://localhost/registerparts/index.php/helpers/api_ws/typesVehicles/' + idVehicleMotor + '/' + idVehicleMake + '/' + idModel + '/' + idGeneration + '/format/json',
+        url: url + folder + controller + 'typesVehicles/'+ idVehicleMotor + '/' + idVehicleMake + '/' + idModel + '/' + idGeneration + '/' + format + format_type,  //'http://localhost/registerparts/index.php/helpers/api_ws/typesVehicles/' + idVehicleMotor + '/' + idVehicleMake + '/' + idModel + '/' + idGeneration + '/format/json',
         type: 'GET',
         dataType: 'json',
         cache: false,
@@ -162,7 +167,7 @@ function getVehicleType(idVehicleMotor, idVehicleMake, idModel, idGeneration) {
             });
             selectType.prop('disabled', false);
         }, error: function () {
-            alert('ERROOOOORRR');
+            alert('ERROR');
         }
     });
 }
@@ -171,7 +176,7 @@ function getVehicleType(idVehicleMotor, idVehicleMake, idModel, idGeneration) {
 function getModelGas(idModel) {
     var selectGas = $('#idSelectGas');
     $.ajax({
-        url: 'http://localhost/registerparts/index.php/helpers/api_ws/gasformodel/' + idModel + '/format/json',
+        url: url + folder + controller + 'gasformodel/'+ idModel + '/' + format + format_type,  //'http://localhost/registerparts/index.php/helpers/api_ws/gasformodel/' + idModel + '/format/json',
         type: 'GET',
         dataType: 'json',
         cache: false,
@@ -184,15 +189,15 @@ function getModelGas(idModel) {
             });
             selectGas.prop('disabled', false);
         }, error: function () {
-            alert('ERROOOOORRR');
+            alert('ERROR');
         }
     });
 }
-
+/*Retorna todas las piezas por tipo de vehiculo*/
 function getParts(idCategory, idVehicleType) {
     var listParts = $('#idBodyTable');
     $.ajax({
-        url: 'http://localhost/registerparts/index.php/helpers/api_ws/partsForVehicleType/' + idCategory + '/' + idVehicleType + '/format/json',
+        url: url + folder + controller + 'partsForVehicleType/'+ idCategory + '/' + idVehicleType + '/' + format + format_type, // 'http://localhost/registerparts/index.php/helpers/api_ws/partsForVehicleType/' + idCategory + '/' + idVehicleType + '/format/json',
         type: 'GET',
         dataType: 'Json',
         cache: false,
