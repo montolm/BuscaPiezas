@@ -14,7 +14,7 @@ Class User_model extends CI_Model {
     }
 
     function create_user_model($datos) {
-        $insert = $this->db->insert('user', $datos);
+        $insert = $this->db->insert('user_replacement', $datos);
         if ($insert > 0) {
             return $insert;
         } else {

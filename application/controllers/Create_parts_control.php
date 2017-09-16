@@ -28,5 +28,8 @@ class Create_parts_control extends CI_Api {
     public function urlBP() {
         $this->loadView('create-parts'); //create-parts
     }
+    public function createPart(){
+        echo FALSE;
+    }
 
 }

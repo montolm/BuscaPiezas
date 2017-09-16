@@ -33,7 +33,7 @@ class Login_model extends CI_Model {
         $this->db->where('password', $password);
         $this->db->where('mca_inh', 'N');
 
-        $query = $this->db->get('user');
+        $query = $this->db->get('user_replacement');
         if ($query->num_rows() == 0) :
             //usuario no existe
             return 0;

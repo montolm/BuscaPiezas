@@ -43,11 +43,10 @@ class Login_control extends CI_Api {
     function validateLogin() {
         if ($this->input->post()) {
             $user_name = $this->input->post('email');
-            $password = md5($this->input->post('password'));
-
+            $password = $this->input->post('password');
             if ($user_name !== '' && $password !== '') {
-                $register = $this->Login_model->validateUserModel($user_name, $password);
-                /* Si es cero no existe usuario */
+                $register = $this->Login_model->validateUserModel($user_name, md5($this->input->post('password')));
+                //Si es cero no existe usuario 
                 if ($register == 0) {
                     $this->loadView('login');
                 } else {
@@ -62,15 +61,14 @@ class Login_control extends CI_Api {
             } else {
                 $this->loadView('login');
             }
-        }
-        else{
-            if($this->isLogin()){
+        } else {
+            if ($this->isLogin()) {
                 echo 'ESTA LOGUEADO';
-            }else{
+            } else {
                 echo 'NO LOGUIN';
             }
         }
-        
+        $password = null;
     }
 
 }

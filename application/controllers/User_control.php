@@ -39,7 +39,7 @@ class User_control extends CI_Api {
 
     function createUser() {
         if ($this->input->post()) {
-            $id_userSum = $this->Api_model->getMaxNUMId('user', 'id_user');
+            $id_userSum = $this->Api_model->getMaxNUMId('user_replacement', 'id_user');
             $name = $this->input->post('firstname');
             $phone = $this->input->post('phone');
             $direction_street = $this->input->post('directionstreet');
