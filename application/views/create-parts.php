@@ -14,58 +14,59 @@
             <form id="idPartForm">
                 <div class="form-group col-xs-6 col-sm-5">
                     <label for="idSelectCategory">Sistemas:</label>
-                    <select class="form-control" id="idSelectCategory">
+                    <select class="form-control" id="idSelectCategory" name="selectCategory">
                         <option value="0" saelected>Todos los sistemas</option>
                     </select>
                 </div>
                 <div class="form-group col-xs-6 col-sm-5">
                     <label for="idSelectVehiMotor">Vehiculos de motor:</label>
-                    <select class="form-control" id="idSelectVehiMotor">
+                    <select class="form-control" id="idSelectVehiMotor" name="selectVehiMotor">
                         <option value="0" selected>Todos los vehiculos de motor</option>
                     </select>
                 </div>
                 <div class="form-group col-xs-6 col-sm-5">
                     <label for="idSelectMake">Marcas:</label>
-                    <select class="form-control" id="idSelectMake">
+                    <select class="form-control" id="idSelectMake" name="selectMake">
                         <option value="0" selected>Todas las marcas</option>
                     </select>
                 </div>
                 <div class="form-group col-xs-6 col-sm-5">
                     <label for="idSelectModel">Modelos:</label>
-                    <select class="form-control" id="idSelectModel">
+                    <select class="form-control" id="idSelectModel" name="selectModel">
                         <option value="0" selected>Todos los modelos</option>
                     </select>
                 </div>
                 <div class="form-group col-xs-6 col-sm-5">
                     <label for="idSelectGeneration">Generaciones:</label>
-                    <select class="form-control" id="idSelectGeneration">
+                    <select class="form-control" id="idSelectGeneration" name="selectGeneration">
                         <option value="0" selected>Todas las generaciones</option>
                     </select>
                 </div>
                 <div class="form-group col-xs-6 col-sm-5">
                     <label for="idSelectType">Tipos:</label>
-                    <select class="form-control" id="idSelectType">
+                    <select class="form-control" id="idSelectType" name="selectType">
                         <option value="0" selected>Todos los tipos de vehiculos</option>
                     </select>
                 </div>
                 <div class="form-group col-xs-6 col-sm-5">
                     <label for="idSelectGas">Combustibles:</label>
-                    <select class="form-control" id="idSelectGas">
+                    <select class="form-control" id="idSelectGas" name="selectGas">
                         <option value="0" selected>Todos los combustibles</option>
                     </select>
                 </div>
                 <div class="form-group col-xs-6 col-sm-5">
-                    <label for="idSelectPart">Estado:</label>
-                    <select class="form-control" id="idSelectType">
+                    <label for="idSelectState">Estado:</label>
+                    <select class="form-control" id="idSelectState" name="selectState">
                         <option value="1" selected>Nuevo</option>
                         <option value="2" selected>Usado</option>
                     </select>
                 </div>
+                <div class="form-group hidden">
+                    <input class="form-control " type="text" id="idVehiclePart" name="vehiclePart">
+                </div>
                 <div class="form-group col-xs-8 col-sm-8">
                     <button type="button" class="btn btn-primary col-xs-2 " id="idButtonPart">Buscar</button>
                 </div>
-                <!-- Page Content -->
-                <!-- First Featurette -->
                 <div id="idContainerlist" style="display: none"> 
                     <div class="featurette" id="about">
                         <!------------------------code---------------start---------------->

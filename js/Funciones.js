@@ -1,4 +1,4 @@
-var url = 'http://localhost/RegisterParts/index.php/'; 
+var url = 'http://localhost/RegisterParts/index.php/';
 var url_controller = 'http://localhost/buscapiezas/index.php/'; //'http://www.devetechnologies.com/RegisterParts/index.php/';
 var folder = 'helpers/';
 var controller = 'api_ws/';
@@ -14,7 +14,7 @@ $(document).ready(function () {
         $("#idNameCity").val(city);
     });
 });
-
+/*Se llenan los select list dependiendo de lo seleccionado*/
 $(document).ready(function () {
     getVehicleMotorTypes();
     getMakes();
@@ -33,7 +33,6 @@ $(document).ready(function () {
     });
     $("#idButtonPart").click(function () {
         getParts($('#idSelectCategory').val(), $('#idSelectType').val());
-        //  alert($('#idSelectType').val());
         /*Muestra la lista de piezas por categoria y tipo de vehiculo*/
         document.getElementById('idContainerlist').style.display = 'block';
     });
@@ -43,7 +42,7 @@ $(document).ready(function () {
 function getSystemPart() {
     var selectCategory = $('#idSelectCategory');
     $.ajax({
-        url: 'http://localhost/registerparts/index.php/helpers/api_ws/system/format/json',
+        url: url + folder + controller + 'system/' + format + format_type,
         type: 'GET',
         dataType: 'json',
         cache: false,
@@ -65,7 +64,7 @@ function getSystemPart() {
 function getVehicleMotorTypes() {
     var vehicleMotorType = $('#idSelectVehiMotor');
     $.ajax({
-        url: url + folder + controller + 'vehiclemotortype/' + format + format_type, //"http://localhost/registerparts/index.php/helpers/api_ws/vehiclemotortype/format/json",
+        url: url + folder + controller + 'vehiclemotortype/' + format + format_type, 
         type: 'GET',
         dataType: 'json',
         cache: false,
@@ -87,7 +86,7 @@ function getVehicleMotorTypes() {
 function getMakes() {
     var makes = $('#idSelectMake');
     $.ajax({
-        url: url + folder + controller + 'makes/' + format + format_type, //http://localhost/registerparts/index.php/helpers/api_ws/makes/format/json",
+        url: url + folder + controller + 'makes/' + format + format_type, 
         type: 'GET',
         dataType: 'json',
         cache: false,
@@ -110,7 +109,7 @@ function getMakes() {
 function getModelFormake(idMake) {
     var model = $('#idSelectModel');
     $.ajax({
-        url: url + folder + controller + 'modelformake/' + idMake + '/' + format + format_type, //'http://localhost/registerparts/index.php/helpers/api_ws/modelformake/' + idMake + '/format/json',
+        url: url + folder + controller + 'modelformake/' + idMake + '/' + format + format_type, 
         type: 'GET',
         dataType: 'json',
         cache: false,
@@ -133,7 +132,7 @@ function getModelFormake(idMake) {
 function getGenerationForModel(idModel) {
     var selectGeneration = $('#idSelectGeneration');
     $.ajax({
-        url: url + folder + controller + 'generationformodel/' + idModel + '/' + format + format_type, //'http://localhost/registerparts/index.php/helpers/api_ws/generationformodel/' + idModel + '/format/json',
+        url: url + folder + controller + 'generationformodel/' + idModel + '/' + format + format_type, 
         type: 'GET',
         dataType: 'json',
         cache: false,
@@ -155,7 +154,7 @@ function getGenerationForModel(idModel) {
 function getVehicleType(idVehicleMotor, idVehicleMake, idModel, idGeneration) {
     var selectType = $('#idSelectType');
     $.ajax({
-        url: url + folder + controller + 'typesVehicles/' + idVehicleMotor + '/' + idVehicleMake + '/' + idModel + '/' + idGeneration + '/' + format + format_type, //'http://localhost/registerparts/index.php/helpers/api_ws/typesVehicles/' + idVehicleMotor + '/' + idVehicleMake + '/' + idModel + '/' + idGeneration + '/format/json',
+        url: url + folder + controller + 'typesVehicles/' + idVehicleMotor + '/' + idVehicleMake + '/' + idModel + '/' + idGeneration + '/' + format + format_type, 
         type: 'GET',
         dataType: 'json',
         cache: false,
@@ -177,7 +176,7 @@ function getVehicleType(idVehicleMotor, idVehicleMake, idModel, idGeneration) {
 function getModelGas(idModel) {
     var selectGas = $('#idSelectGas');
     $.ajax({
-        url: url + folder + controller + 'gasformodel/' + idModel + '/' + format + format_type, //'http://localhost/registerparts/index.php/helpers/api_ws/gasformodel/' + idModel + '/format/json',
+        url: url + folder + controller + 'gasformodel/' + idModel + '/' + format + format_type, 
         type: 'GET',
         dataType: 'json',
         cache: false,
@@ -198,13 +197,13 @@ function getModelGas(idModel) {
 function getParts(idCategory, idVehicleType) {
     var listParts = $('#idBodyTable');
     $.ajax({
-        url: url + folder + controller + 'partsForVehicleType/' + idCategory + '/' + idVehicleType + '/' + format + format_type, // 'http://localhost/registerparts/index.php/helpers/api_ws/partsForVehicleType/' + idCategory + '/' + idVehicleType + '/format/json',
+        url: url + folder + controller + 'partsForVehicleType/' + idCategory + '/' + idVehicleType + '/' + format + format_type, 
         type: 'GET',
         dataType: 'Json',
         cache: false,
         success: function (data, textStatus, jqXHR) {
             $(data.parts).each(function (i, v) {
-                listParts.append('<tr><td><input type="checkbox" class="checkthis"/></td> <td>' + v.name_part + '</td><td>' + v.name_category + '</td><td>' + v.name_vehicle_type + '</td></tr>');
+                listParts.append('<tr><td><input type="checkbox" class="checkthis" name="checkVal" value ="' + v.id_part + '"/></td> <td>' + v.name_part + '</td><td>' + v.name_category + '</td><td>' + v.name_vehicle_type + '</td></tr>');
             });
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -213,26 +212,32 @@ function getParts(idCategory, idVehicleType) {
     });
 
 }
-/*inserta las piezas por tipo de vehiculo y repuesto*/
+/*inserta las piezas por categoria, tipo de vehiculo y repuesto*/
 $(document).ready(function () {
     $("#idButtonSavePart").click(function (e) {
         var idCamp = null;
         var urlController = url_controller + 'create_parts_control/createPart';
         var idForm = "#idPartForm";
-        insertRegyster(idCamp, urlController, idForm);
+        $("input:checkbox:checked").each(function (i, v) {
+            $('#idVehiclePart').val(v.value);
+            if (v.value !== 'on') {
+                insertRegyster(idCamp, urlController, idForm);
+                location.reload();
+            }
+
+        });
+
     });
 });
 /*Inserta registros en la DB de manera dinamica*/
 function insertRegyster(idCamp, url, idForm) {
-    alert();
     if ($(idCamp).val() !== "") {
-        alert(1);
         $.ajax({
             url: url,
             type: 'POST',
             data: $(idForm).serialize(),
             success: function (respuesta) {
-                alert('ENTROOO_1 ' + respuesta);
+                alert(respuesta);
             },
             complete: function (jqXHR, textStatus) {
 
