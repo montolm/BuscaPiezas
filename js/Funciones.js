@@ -4,6 +4,7 @@ var folder = 'helpers/';
 var controller = 'api_ws/';
 var format = 'format/';
 var format_type = 'json';
+var is_succes = true;
 
 /*Script para asignar los valores de ciudad y pais en el formulario de registro usuario*/
 $(document).ready(function () {
@@ -14,14 +15,17 @@ $(document).ready(function () {
         $("#idNameCity").val(city);
     });
 });
-/*Se llenan los select list dependiendo de lo seleccionado*/
+/*Se llenan los select box list dependiendo de lo seleccionado*/
 $(document).ready(function () {
-    getVehicleMotorTypes();
     getMakes();
     getSystemPart();
 
     $("#idSelectMake").change(function () {
-        getModelFormake($("#idSelectMake").val());
+        getVehicleMotorTypes($("#idSelectMake").val());
+    });
+
+    $("#idSelectVehiMotor").change(function () {
+        getModelFormake($("#idSelectMake").val(), $('#idSelectVehiMotor').val());
     });
 
     $("#idSelectModel").change(function () {
@@ -35,6 +39,7 @@ $(document).ready(function () {
         getParts($('#idSelectCategory').val(), $('#idSelectType').val());
         /*Muestra la lista de piezas por categoria y tipo de vehiculo*/
         document.getElementById('idContainerlist').style.display = 'block';
+        $('#idButtonPart').attr("disabled", true);
     });
 });
 
@@ -60,11 +65,11 @@ function getSystemPart() {
     });
 }
 
-/*Carga las marcas enviadas mediante el webservices de registro piezas*/
-function getVehicleMotorTypes() {
+/*Carga los vehiculos de motor dependiendo de la marca enviada mediante WS*/
+function getVehicleMotorTypes(idMake) {
     var vehicleMotorType = $('#idSelectVehiMotor');
     $.ajax({
-        url: url + folder + controller + 'vehiclemotortype/' + format + format_type, 
+        url: url + folder + controller + 'vehiclemotortype/' + idMake + '/' + format + format_type,
         type: 'GET',
         dataType: 'json',
         cache: false,
@@ -86,7 +91,7 @@ function getVehicleMotorTypes() {
 function getMakes() {
     var makes = $('#idSelectMake');
     $.ajax({
-        url: url + folder + controller + 'makes/' + format + format_type, 
+        url: url + folder + controller + 'makes/' + format + format_type,
         type: 'GET',
         dataType: 'json',
         cache: false,
@@ -106,10 +111,10 @@ function getMakes() {
 
 
 /*Carga los modelos por marca seleccionada mediante el webservises registro piezas*/
-function getModelFormake(idMake) {
+function getModelFormake(idMake, idSelectVehiMotor) {
     var model = $('#idSelectModel');
     $.ajax({
-        url: url + folder + controller + 'modelformake/' + idMake + '/' + format + format_type, 
+        url: url + folder + controller + 'modelformake/' + idMake + '/' + idSelectVehiMotor + '/' + format + format_type,
         type: 'GET',
         dataType: 'json',
         cache: false,
@@ -132,7 +137,7 @@ function getModelFormake(idMake) {
 function getGenerationForModel(idModel) {
     var selectGeneration = $('#idSelectGeneration');
     $.ajax({
-        url: url + folder + controller + 'generationformodel/' + idModel + '/' + format + format_type, 
+        url: url + folder + controller + 'generationformodel/' + idModel + '/' + format + format_type,
         type: 'GET',
         dataType: 'json',
         cache: false,
@@ -154,7 +159,7 @@ function getGenerationForModel(idModel) {
 function getVehicleType(idVehicleMotor, idVehicleMake, idModel, idGeneration) {
     var selectType = $('#idSelectType');
     $.ajax({
-        url: url + folder + controller + 'typesVehicles/' + idVehicleMotor + '/' + idVehicleMake + '/' + idModel + '/' + idGeneration + '/' + format + format_type, 
+        url: url + folder + controller + 'typesVehicles/' + idVehicleMotor + '/' + idVehicleMake + '/' + idModel + '/' + idGeneration + '/' + format + format_type,
         type: 'GET',
         dataType: 'json',
         cache: false,
@@ -176,7 +181,7 @@ function getVehicleType(idVehicleMotor, idVehicleMake, idModel, idGeneration) {
 function getModelGas(idModel) {
     var selectGas = $('#idSelectGas');
     $.ajax({
-        url: url + folder + controller + 'gasformodel/' + idModel + '/' + format + format_type, 
+        url: url + folder + controller + 'gasformodel/' + idModel + '/' + format + format_type,
         type: 'GET',
         dataType: 'json',
         cache: false,
@@ -197,7 +202,7 @@ function getModelGas(idModel) {
 function getParts(idCategory, idVehicleType) {
     var listParts = $('#idBodyTable');
     $.ajax({
-        url: url + folder + controller + 'partsForVehicleType/' + idCategory + '/' + idVehicleType + '/' + format + format_type, 
+        url: url + folder + controller + 'partsForVehicleType/' + idCategory + '/' + idVehicleType + '/' + format + format_type,
         type: 'GET',
         dataType: 'Json',
         cache: false,
@@ -219,12 +224,18 @@ $(document).ready(function () {
         var urlController = url_controller + 'create_parts_control/createPart';
         var idForm = "#idPartForm";
         $("input:checkbox:checked").each(function (i, v) {
-            $('#idVehiclePart').val(v.value);
             if (v.value !== 'on') {
+                alert('0');
+                $('#idVehiclePart').val(v.value);
+                $("#idButtonSavePart").attr("disabled", true);
                 insertRegyster(idCamp, urlController, idForm);
-                location.reload();
             }
-
+        });
+        $('#idClose').click(function (e) {
+            location.reload();
+        });
+        $('#idClose_error').click(function (e) {
+            location.reload();
         });
 
     });
@@ -237,20 +248,15 @@ function insertRegyster(idCamp, url, idForm) {
             type: 'POST',
             data: $(idForm).serialize(),
             success: function (respuesta) {
-                alert(respuesta);
+                document.getElementById('idMesage_succes').style.display = 'block';
             },
             complete: function (jqXHR, textStatus) {
 
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                $(idCamp).val();
-                $("#idmensaje").overhang({
-                    type: "error",
-                    upper: false,
-                    speed: 1000,
-                    message: "ERROR FATAL"
-                });
-                console.log('ERROR DESCONOCIDO ' + jqXHR);
+                document.getElementById('idMesage_error').style.display = 'block';
+
+                // console.log('ERROR DESCONOCIDO ' + jqXHR);
             }
         });
     }

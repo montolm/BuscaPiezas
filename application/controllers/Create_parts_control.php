@@ -23,9 +23,9 @@ class Create_parts_control extends CI_Api {
         $this->load->model('Create_part_model');
     }
 
-    function index() {
-        $this->load->view('create-parts');
-    }
+//    function index() {
+//        $this->load->view('create-parts');
+//    }
 
     public function urlBP() {
         $this->loadView('create-parts'); //create-parts

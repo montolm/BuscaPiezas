@@ -10,7 +10,16 @@
     </head>
     <?php include ('menu.php'); ?> 
     <body>
-        <div class="container" style="margin-left: 20%; padding-top: 2%;"   >
+        <div class="container" style="margin-left: 20%; padding-top: 2%;">
+            <div id="idMesage_succes" class="alert alert-success alert-dismissable" style="display: none" >
+                <button type="button" id="idClose" class="close" data-dismiss="alert">&times;</button>
+                <strong>¡Listo!</strong> Registros guardado exitosamente.
+            </div>
+            <div id="idMesage_error" class="alert alert-danger alert-dismissable" style="display: none" >
+                <button type="button" id="idClose_error" class="close" data-dismiss="alert">&times;</button>
+                <strong>¡Error!</strong> Error favor verificar.
+            </div>
+            <br>
             <form id="idPartForm">
                 <div class="form-group col-xs-6 col-sm-5">
                     <label for="idSelectCategory">Sistemas:</label>
@@ -19,15 +28,15 @@
                     </select>
                 </div>
                 <div class="form-group col-xs-6 col-sm-5">
-                    <label for="idSelectVehiMotor">Vehiculos de motor:</label>
-                    <select class="form-control" id="idSelectVehiMotor" name="selectVehiMotor">
-                        <option value="0" selected>Todos los vehiculos de motor</option>
-                    </select>
-                </div>
-                <div class="form-group col-xs-6 col-sm-5">
                     <label for="idSelectMake">Marcas:</label>
                     <select class="form-control" id="idSelectMake" name="selectMake">
                         <option value="0" selected>Todas las marcas</option>
+                    </select>
+                </div>
+                <div class="form-group col-xs-6 col-sm-5">
+                    <label for="idSelectVehiMotor">Vehiculos de motor:</label>
+                    <select class="form-control" id="idSelectVehiMotor" name="selectVehiMotor">
+                        <option value="0" selected>Todos los vehiculos de motor</option>
                     </select>
                 </div>
                 <div class="form-group col-xs-6 col-sm-5">
@@ -85,16 +94,16 @@
                                     <tbody id="idBodyTable">
                                     </tbody>
                                 </table>
-                                <div class="clearfix"></div>
-                                <ul class="pagination pull-right">
-                                    <li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
-                                    <li class="active"><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">5</a></li>
-                                    <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
-                                </ul>
+                                <!--                                <div class="clearfix"></div>
+                                                                <ul class="pagination pull-right">
+                                                                    <li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+                                                                    <li class="active"><a href="#">1</a></li>
+                                                                    <li><a href="#">2</a></li>
+                                                                    <li><a href="#">3</a></li>
+                                                                    <li><a href="#">4</a></li>
+                                                                    <li><a href="#">5</a></li>
+                                                                    <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+                                                                </ul>-->
                             </div>
                         </div>
                         <div class="form-group col-xs-8 col-sm-8">
@@ -104,14 +113,12 @@
                 </div>
             </form>
         </div>
-        <script src="<?php echo base_url(); ?>js/Jquery-2.1.1.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url(); ?>js/Bootstrap.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url(); ?>js/Funciones.js" type="text/javascript"></script>
-<!--        <script src="<?php echo base_url(); ?>js/jquery.dataTables.min.js" type="text/javascript"></script>-->
+        <script src="<?= base_url() ?>js/Jquery-2.1.1.min.js"></script>
+        <script src="<?= base_url() ?>js/Bootstrap.min.js"></script>
+        <script src="<?= base_url() ?>js/Funciones.js"></script>
         <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
-        <script src="<?php echo base_url(); ?>js/Validate.js" type="text/javascript"></script>
-        <script src="<?php echo base_url(); ?>js/createParts.js" type="text/javascript"></script>
-<!--        <script src="<?php echo base_url(); ?>js/dataTables.bootstrap.min.js" type="text/javascript"></script>-->
+        <script src="<?= base_url() ?>js/Validate.js"></script>
+        <script src="<?= base_url() ?>js/createParts.js"></script>
         <script>
             $(document).ready(function () {
                 $("#mytable #checkall").click(function () {
@@ -130,9 +137,9 @@
             });
         </script>
 
-        <script>
+<!--        <script>
             $('#mytable').dataTable({
-                "paging": true,
+                "paging": false,
                 "ordering": true,
                 "info": false,
                 "language": {
@@ -151,7 +158,6 @@
 
                 }
             });
-        </script>
-
+        </script>-->
     </body>
 </html>
