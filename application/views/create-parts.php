@@ -15,6 +15,10 @@
                 <button type="button" id="idClose" class="close" data-dismiss="alert">&times;</button>
                 <strong>¡Listo!</strong> Registros guardado exitosamente.
             </div>
+            <div id="idMesage_sesion" class="alert alert-danger alert-dismissable" style="display: none" >
+                <button type="button" id="idCloseSesion" class="close" data-dismiss="alert">&times;</button>
+                <strong>¡Sesion!</strong> Su sesion a caducado.
+            </div>
             <div id="idMesage_error" class="alert alert-danger alert-dismissable" style="display: none" >
                 <button type="button" id="idClose_error" class="close" data-dismiss="alert">&times;</button>
                 <strong>¡Error!</strong> Error favor verificar.
@@ -90,6 +94,7 @@
                                     <th>Piezas</th>
                                     <th>Categorias</th>
                                     <th>Tipos de vehiculos</th>
+                                    <th>Precio</th>
                                     </thead>
                                     <tbody id="idBodyTable">
                                     </tbody>
@@ -115,6 +120,7 @@
         </div>
         <script src="<?= base_url() ?>js/Jquery-2.1.1.min.js"></script>
         <script src="<?= base_url() ?>js/Bootstrap.min.js"></script>
+        <script src="<?php echo base_url(); ?>js/idleTimer/idle-timer.js" type="text/javascript"></script>
         <script src="<?= base_url() ?>js/Funciones.js"></script>
         <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
         <script src="<?= base_url() ?>js/Validate.js"></script>

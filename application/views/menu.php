@@ -31,8 +31,10 @@
     <body>
         <div id="wrapper">
             <!-- Navigation -->
+
             <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
                 <!-- Brand and toggle get grouped for better mobile display -->
+
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                         <span class="sr-only">Toggle navigation</span>
@@ -40,8 +42,11 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.php">Busca Piezas</a>
                 </div>
+                <div class="form-group col-md-1">
+                    <img src="<?= base_url() ?>images/Logo_busca_piezas.png" class="img-circle img-responsive" width="40" height="50">
+                </div>
+                <a class="navbar-brand" href="index.php" style="margin-left: -100px">Busca Piezas</a>
                 <!-- Top Menu Items -->
                 <ul class="nav navbar-right top-nav">
                     <li class="dropdown">

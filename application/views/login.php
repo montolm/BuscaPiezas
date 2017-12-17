@@ -3,9 +3,11 @@
     <head>
         <link href="<?php echo base_url(); ?>css/bootstrap.min.css" rel="stylesheet">   
         <link href="<?php echo base_url(); ?>css/login.css" rel="stylesheet">  
-        
+
         <script src="<?php echo base_url(); ?>js/Jquery-2.1.1.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/Bootstrap.min.js" type="text/javascript"></script>
+<!--        <script src="<?php echo base_url(); ?>js/idleTimer/idle-timer.js" type="text/javascript"></script>
+        <script src="<?php echo base_url(); ?>js/funciones.js" type="text/javascript"></script>-->
         <script src="https://use.typekit.net/ayg4pcz.js"></script>
         <script>try {
                 Typekit.load({async: true});

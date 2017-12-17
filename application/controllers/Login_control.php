@@ -34,13 +34,13 @@ class Login_control extends CI_Api {
 
     /* Llama la vista user */
 
-    function urlUser() {
+    public function urlUser() {
         $this->loadView('user');
     }
 
     /* Consulta si el usuario y clave existen como usuario activo y registrado. */
 
-    function validateLogin() {
+    public function validateLogin() {
         if ($this->input->post()) {
             $user_name = $this->input->post('email');
             $password = $this->input->post('password');
@@ -48,7 +48,8 @@ class Login_control extends CI_Api {
                 $register = $this->Login_model->validateUserModel($user_name, md5($this->input->post('password')));
                 //Si es cero no existe usuario 
                 if ($register == 0) {
-                    $this->loadView('login');
+                    //$this->loadView('login');
+                     redirect($this->config->item('CONSTANT_LOADVIEW') . 'index' . '');
                 } else {
                     $newdata = array(
                         'username' => $user_name,
@@ -56,10 +57,12 @@ class Login_control extends CI_Api {
                         'logged' => TRUE
                     );
                     $this->createSesion($newdata);
-                    $this->loadView('index');
+                      redirect($this->config->item('CONSTANT_LOADVIEW') . 'index' . '');
+//$this->loadView('index');
                 }
             } else {
-                $this->loadView('login');
+               // $this->loadView('login');
+                 redirect($this->config->item('CONSTANT_LOADVIEW') . 'index' . '');
             }
         } else {
             if ($this->isLogin()) {
@@ -70,5 +73,6 @@ class Login_control extends CI_Api {
         }
         $password = null;
     }
+
 
 }

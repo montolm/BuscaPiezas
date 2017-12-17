@@ -1,10 +1,12 @@
 var url = 'http://localhost/RegisterParts/index.php/';
 var url_controller = 'http://localhost/buscapiezas/index.php/'; //'http://www.devetechnologies.com/RegisterParts/index.php/';
-var folder = 'helpers/';
-var controller = 'api_ws/';
-var format = 'format/';
-var format_type = 'json';
+var folder = 'helpers/';//Webservises
+var controller = 'Api_ws/';//Webservises
+var controller_1 = 'api/';
+var format = 'format/';//Webservises
+var format_type = 'json';//Webservises
 var is_succes = true;
+//http://devetechnologies.com/RegisterParts/index.php/helpers/Api_ws/makes/format/json
 
 /*Script para asignar los valores de ciudad y pais en el formulario de registro usuario*/
 $(document).ready(function () {
@@ -17,8 +19,8 @@ $(document).ready(function () {
 });
 /*Se llenan los select box list dependiendo de lo seleccionado*/
 $(document).ready(function () {
-    getMakes();
     getSystemPart();
+    getMakes();
 
     $("#idSelectMake").change(function () {
         getVehicleMotorTypes($("#idSelectMake").val());
@@ -46,6 +48,7 @@ $(document).ready(function () {
 /*Carga los sistemas a colocarle sus piezas*/
 function getSystemPart() {
     var selectCategory = $('#idSelectCategory');
+    //alert(url + folder + controller + 'system/' + format + format_type);
     $.ajax({
         url: url + folder + controller + 'system/' + format + format_type,
         type: 'GET',
@@ -59,8 +62,8 @@ function getSystemPart() {
                 selectCategory.append('<option value="' + v.id_category + '">' + v.name_category + '</option>');
             });
             selectCategory.prop('disabled', false);
-        }, error: function () {
-            alert('ERROR');
+        }, error: function (jqXHR, textStatus, errorThrown) {
+            console.log('ERROR DESCONOCIDO ' + jqXHR);
         }
     });
 }
@@ -104,7 +107,7 @@ function getMakes() {
             });
             makes.prop('disabled', false);
         }, error: function () {
-            alert('ERROR');
+            
         }
     });
 }
@@ -208,7 +211,8 @@ function getParts(idCategory, idVehicleType) {
         cache: false,
         success: function (data, textStatus, jqXHR) {
             $(data.parts).each(function (i, v) {
-                listParts.append('<tr><td><input type="checkbox" class="checkthis" name="checkVal" value ="' + v.id_part + '"/></td> <td>' + v.name_part + '</td><td>' + v.name_category + '</td><td>' + v.name_vehicle_type + '</td></tr>');
+                listParts.append('<tr><td><input type="checkbox" class="checkthis" name="checkVal" value ="' + v.id_part + '"/></td> <td>' + v.name_part + '</td><td>' + v.name_category + '</td><td>' + v.name_vehicle_type +
+                        '</td><td><input type="text" class="form-control input-lg" id="idPrice" name="' + v.id_part + '" value=""/></td></tr>');
             });
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -225,8 +229,7 @@ $(document).ready(function () {
         var idForm = "#idPartForm";
         $("input:checkbox:checked").each(function (i, v) {
             if (v.value !== 'on') {
-                alert('0');
-                $('#idVehiclePart').val(v.value);
+                $('#idVehiclePart').val(v.value);//Asigna el id de cada pieza
                 $("#idButtonSavePart").attr("disabled", true);
                 insertRegyster(idCamp, urlController, idForm);
             }
@@ -248,7 +251,8 @@ function insertRegyster(idCamp, url, idForm) {
             type: 'POST',
             data: $(idForm).serialize(),
             success: function (respuesta) {
-                document.getElementById('idMesage_succes').style.display = 'block';
+              alert(respuesta);
+              document.getElementById('idMesage_succes').style.display = 'block';
             },
             complete: function (jqXHR, textStatus) {
 
@@ -263,3 +267,27 @@ function insertRegyster(idCamp, url, idForm) {
 
 }
 
+$(document).ready(function () {
+    $.idleTimer(600000);
+    $(document).bind("idle.idleTimer", function () {
+        $.ajax({
+            url: url_controller + folder + controller_1 + 'endSesionInactivity',
+            type: 'POST',
+            data: '',
+            success: function (respuesta) {
+                $('#idButtonPart').attr("disabled", true);
+                document.getElementById('idMesage_sesion').style.display = 'block';
+                $('#idCloseSesion').click(function (e) {
+                   window.location.href = url_controller;
+                });
+            }
+        });
+        // function you want to fire when the user goes idle
+    });
+    $(document).bind("active.idleTimer", function () {
+        //llama mediante ajax para borrar todos los datos de sesion y ir a la
+        //pagina de login
+        // function you want to fire when the user becomes active again
+        // alert('Hola');
+    });
+});

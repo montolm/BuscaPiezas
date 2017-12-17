@@ -23,12 +23,8 @@ class Create_parts_control extends CI_Api {
         $this->load->model('Create_part_model');
     }
 
-//    function index() {
-//        $this->load->view('create-parts');
-//    }
-
     public function urlBP() {
-        $this->loadView('create-parts'); //create-parts
+        $this->loadView('create-parts');
     }
 
     public function createPart() {
@@ -40,9 +36,13 @@ class Create_parts_control extends CI_Api {
         $id_gas = $this->input->post('selectGas');
         $id_state = $this->input->post('selectState');
         $id_part = $this->input->post('vehiclePart');
+        $price_part = $this->input->post($id_part);
         $creation_date = date("y-m-d", time());
         $fec_actu = date("y-m-d", time());
         $mca_inh = 'N';
+//        echo '$user_name '.$user_name.' $id_vehiclePart_Sum '.$id_vehiclePart_Sum.' $user_id_exist '.$user_id_exist.' $id_system '.$id_system.
+//                ' $id_vehicle_type '.$id_vehicle_type.' $id_state '.$id_state.' $id_part '.$id_part.' $ price_part '.$price_part;
+//                
         if ($user_id_exist > 0) {
             $datos = array("id_replacement" => $id_vehiclePart_Sum,
                 "id_system" => $id_system,
@@ -53,8 +53,8 @@ class Create_parts_control extends CI_Api {
                 "id_user_replacement" => $user_id_exist,
                 "mca_inh" => $mca_inh,
                 "creation_date" => $creation_date,
-                "date_update" => $fec_actu);
-
+                "date_update" => $fec_actu,
+                "price" => $price_part);
             $result = $this->Create_part_model->createReplacementPart($datos);
             $returnValue = $this->Api_model->getException($result);
 
