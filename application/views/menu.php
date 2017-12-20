@@ -72,19 +72,19 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav">
                         <li class="active">
-                            <a href="index.php"><i class="fa fa-fw fa-dashboard"></i> Menu</a>
+                            <a href="<?= site_url('/User_control/urlMenu'); ?>"><i class="fa fa-fw fa-dashboard"></i> Menu</a>
                         </li>
                         <li>
-                            <a href="<?= site_url('/Busca_piezas_control/urlBP'); ?>"><i class="fa fa-wrench"></i> Registro</a>
+                            <a href="<?= site_url('/Create_parts_control/urlBP'); ?>"><i class="fa fa-wrench"></i> Registro</a>
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-search"></i> Buscar</a>
+                            <a href="#"><i class="fa fa-search"></i> Buscar</a>
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-area-chart"></i> Reportes</a>
+                            <a href="#"><i class="fa fa-area-chart"></i> Reportes</a>
                         </li>
                         <li>
-                            <a href="bootstrap-elements.html"><i class="fa fa-plus"></i> Administrador</a>
+                            <a href="http://localhost/registerparts/" target="_blank"><i class="fa fa-plus"></i> Administrador</a>
                         </li>
                     </ul>
                 </div>

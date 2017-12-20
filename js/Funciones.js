@@ -6,7 +6,6 @@ var controller_1 = 'api/';
 var format = 'format/';//Webservises
 var format_type = 'json';//Webservises
 var is_succes = true;
-//http://devetechnologies.com/RegisterParts/index.php/helpers/Api_ws/makes/format/json
 
 /*Script para asignar los valores de ciudad y pais en el formulario de registro usuario*/
 $(document).ready(function () {
@@ -266,7 +265,7 @@ function insertRegyster(idCamp, url, idForm) {
     }
 
 }
-
+/*Manejo de sesion activa o inactiva*/
 $(document).ready(function () {
     $.idleTimer(600000);
     $(document).bind("idle.idleTimer", function () {

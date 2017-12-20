@@ -37,6 +37,11 @@ class User_control extends CI_Api {
         $this->loadView('login');
     }
 
+    function urlMenu() {
+        //$this->closeSesion();
+        $this->loadView('index');
+    }
+
     function createUser() {
         if ($this->input->post()) {
             $id_userSum = $this->Api_model->getMaxNUMId('user_replacement', 'id_user');
@@ -81,7 +86,7 @@ class User_control extends CI_Api {
 
             if ($result > 0) {
                 $this->loadView('login');
-            } 
+            }
             // $returnValue = $this->Api_model->getException($result);
             // echo $returnValue;
         }

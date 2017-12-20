@@ -36,8 +36,11 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.php">Busca Piezas</a>
                 </div>
+                <div class="form-group col-md-1">
+                    <img src="<?= base_url() ?>images/Logo_busca_piezas.png" class="img-circle img-responsive" width="40" height="50">
+                </div>
+                <a class="navbar-brand" href="index.php" style="margin-left: -100px">Busca Piezas</a>
                 <!-- Top Menu Items -->
                 <ul class="nav navbar-right top-nav">
                     <li class="dropdown">
@@ -63,19 +66,19 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav">
                         <li class="active">
-                            <a href="index.php"><i class="fa fa-fw fa-dashboard"></i> Menu</a>
+                            <a href="<?= site_url('/User_control/urlMenu'); ?>"><i class="fa fa-fw fa-dashboard"></i> Menu</a>
                         </li>
                         <li>
                             <a href="<?= site_url('/Create_parts_control/urlBP'); ?>"><i class="fa fa-wrench"></i> Registro</a>
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-search"></i> Buscar</a>
+                            <a href="#"><i class="fa fa-search"></i> Buscar</a>
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-area-chart"></i> Reportes</a>
+                            <a href="#"><i class="fa fa-area-chart"></i> Reportes</a>
                         </li>
                         <li>
-                            <a href="http://localhost/registerparts/"><i class="fa fa-plus"></i> Administrador</a>
+                            <a href="http://localhost/registerparts/" target="_blank"><i class="fa fa-plus"></i> Administrador</a>
                         </li>
                     </ul>
                 </div>
@@ -178,8 +181,7 @@
                                         </div>
                                     </div>
                                 </div>
-<!--                                http://www.devetechnologies.com/RegisterParts/-->
-                                <a href="http://localhost/registerparts/">
+                                <a href="http://localhost/registerparts/" target="_blank" id="urlAdmin">
                                     <div class="panel-footer">
                                         <span class="pull-left">Ir</span>
                                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
