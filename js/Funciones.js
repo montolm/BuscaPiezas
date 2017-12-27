@@ -250,7 +250,7 @@ function insertRegyster(idCamp, url, idForm) {
             type: 'POST',
             data: $(idForm).serialize(),
             success: function (respuesta) {
-              alert(respuesta);
+              //alert(respuesta);
               document.getElementById('idMesage_succes').style.display = 'block';
             },
             complete: function (jqXHR, textStatus) {
@@ -258,8 +258,7 @@ function insertRegyster(idCamp, url, idForm) {
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 document.getElementById('idMesage_error').style.display = 'block';
-
-                // console.log('ERROR DESCONOCIDO ' + jqXHR);
+                console.log('ERROR DESCONOCIDO ' + jqXHR);
             }
         });
     }

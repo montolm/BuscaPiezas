@@ -49,7 +49,7 @@ class Login_control extends CI_Api {
                 //Si es cero no existe usuario 
                 if ($register == 0) {
                     //$this->loadView('login');
-                     redirect($this->config->item('CONSTANT_LOADVIEW') . 'index' . '');
+                    redirect($this->config->item('CONSTANT_LOADVIEW') . 'login' . '');
                 } else {
                     $newdata = array(
                         'username' => $user_name,
@@ -57,12 +57,10 @@ class Login_control extends CI_Api {
                         'logged' => TRUE
                     );
                     $this->createSesion($newdata);
-                      redirect($this->config->item('CONSTANT_LOADVIEW') . 'index' . '');
-//$this->loadView('index');
+                    redirect($this->config->item('CONSTANT_LOADVIEW') . 'index' . '');
                 }
             } else {
-               // $this->loadView('login');
-                 redirect($this->config->item('CONSTANT_LOADVIEW') . 'index' . '');
+                redirect($this->config->item('CONSTANT_LOADVIEW') . 'index' . '');
             }
         } else {
             if ($this->isLogin()) {
@@ -73,6 +71,5 @@ class Login_control extends CI_Api {
         }
         $password = null;
     }
-
 
 }
