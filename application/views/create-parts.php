@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <title>Busca Piezas</title>
+        <title>Crear Piezas</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="<?= base_url() ?>css/bootstrap.min.css" rel="stylesheet">
@@ -95,6 +95,7 @@
                                     <th>Categorias</th>
                                     <th>Tipos de vehiculos</th>
                                     <th>Precio</th>
+                                    <th>Comentario</th>
                                     </thead>
                                     <tbody id="idBodyTable">
                                     </tbody>
@@ -132,28 +133,5 @@
                 $("[data-toggle=tooltip]").tooltip();
             });
         </script>
-
-<!--        <script>
-            $('#mytable').dataTable({
-                "paging": false,
-                "ordering": true,
-                "info": false,
-                "language": {
-                    "sLengthMenu": "Mostrar _MENU_ registros",
-                    "zeroRecords": "Nothing found - sorry",
-                    "info": "Showing page _PAGE_ of _PAGES_",
-                    "infoEmpty": "No records available",
-                    "infoFiltered": "(filtered from _MAX_ total records)",
-                    "sSearch": "Buscar:",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Último",
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    }
-
-                }
-            });
-        </script>-->
     </body>
 </html>

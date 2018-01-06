@@ -14,6 +14,7 @@ class Login_control extends CI_Api {
     public function __construct() {
         parent::__construct();
         $this->load->model('Login_model');
+        $this->load->model('Api_model');
     }
 
     function index() {
@@ -51,9 +52,11 @@ class Login_control extends CI_Api {
                     //$this->loadView('login');
                     redirect($this->config->item('CONSTANT_LOADVIEW') . 'login' . '');
                 } else {
+                    $user_id = $this->Api_model->getId('user_replacement', 'email', 'id_user', $user_name);
                     $newdata = array(
                         'username' => $user_name,
                         'email' => $user_name,
+                        'id_user' => $user_id,
                         'logged' => TRUE
                     );
                     $this->createSesion($newdata);

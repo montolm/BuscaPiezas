@@ -34,7 +34,7 @@ Class Api_model extends CI_Model {
         return $value + 1;
     }
 
-    /* Retorna max num_id de la tabla solicitada */
+    /* Retorna num_id de la tabla solicitada */
 
     public function getId($tableName, $field, $selectField, $valCampo) {
         $query = $this->db->query("select $selectField "

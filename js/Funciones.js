@@ -33,6 +33,7 @@ $(document).ready(function () {
         getGenerationForModel($("#idSelectModel").val());
         getModelGas($("#idSelectModel").val());
     });
+    
     $("#idSelectGeneration").change(function () {
         getVehicleType($("#idSelectVehiMotor").val(), $("#idSelectMake").val(), $("#idSelectModel").val(), $('#idSelectGeneration').val());
     });
@@ -41,6 +42,19 @@ $(document).ready(function () {
         /*Muestra la lista de piezas por categoria y tipo de vehiculo*/
         document.getElementById('idContainerlist').style.display = 'block';
         $('#idButtonPart').attr("disabled", true);
+    });
+    
+    $("#idButtonPartForUserReplacement").click(function () {
+        //alert($('#idInputUser').val());
+        getPartsForUserReplacement($('#idInputUser').val(),
+                $('#idSelectCategory').val(),
+                $("#idSelectMake").val(),
+                $("#idSelectVehiMotor").val(),
+                $("#idSelectModel").val());
+
+        /*Muestra la lista de piezas por usuarios*/
+        document.getElementById('idContainerlist').style.display = 'block';
+        //$('#idButtonPart').attr("disabled", true);
     });
 });
 
@@ -106,7 +120,7 @@ function getMakes() {
             });
             makes.prop('disabled', false);
         }, error: function () {
-            
+
         }
     });
 }
@@ -211,7 +225,34 @@ function getParts(idCategory, idVehicleType) {
         success: function (data, textStatus, jqXHR) {
             $(data.parts).each(function (i, v) {
                 listParts.append('<tr><td><input type="checkbox" class="checkthis" name="checkVal" value ="' + v.id_part + '"/></td> <td>' + v.name_part + '</td><td>' + v.name_category + '</td><td>' + v.name_vehicle_type +
-                        '</td><td><input type="text" class="form-control input-lg" id="idPrice" name="' + v.id_part + '" value=""/></td></tr>');
+                        '</td><td><input type="text" class="form-control input-lg" id="idPrice" name="' + v.id_part + '" value=""/></td>\n\
+                        <td><input type="text" class="form-control input-lg" id="idComent" name="'+v.id_part+'_comment" value=""/></td></tr>');
+            });
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert('ERROR');
+        }
+    });
+
+}
+
+/*Retorna todas las piezas por repuesto*/
+function getPartsForUserReplacement(idUser, idCategory, idmake, idVehicleTypeMotor, idModel) {
+    var listParts = $('#idBodyTable');
+   // alert(idCategory + ' ' + idmake + ' ' + idVehicleTypeMotor + ' ' + idModel);
+    $.ajax({
+        url: url + folder + controller + 'partForUserReplacement/' +idUser + '/' + idCategory + '/' + idmake + '/' + idVehicleTypeMotor + '/' + idModel + '/' + format + format_type,
+        type: 'GET',
+        dataType: 'Json',
+        cache: false,
+        success: function (data, textStatus, jqXHR) {
+            console.log(data.partsUserReplacement);
+            $(data.partsUserReplacement).each(function (i, v) {
+                listParts.append('<tr><td>' + v.name_category + '</td><td>' + v.name_vehicle_make + '</td><td>' + v.model_name + '</td><td>' + v.generation +
+                        '</td><td>' + v.name_category + '</td><td>' + v.name_part + '</td><td>' + v.state_name + '</td><td>' + v.type_combustible + '</td><td>' + v.company_name + '</td>\n\
+                        <td><input type="text" class="form-control input-lg" id="idPrice" name="" value="' + v.price + '"/></td>\n\
+                        <td><input type="text" class="form-control input-lg" id="idComent" name="" value="'+v.comment+'"/></td></tr>');
+           //<td><input type="text" class="form-control input-lg" id="idPrice" name="' + v.id_part + '" value=""/></td>
             });
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -250,8 +291,8 @@ function insertRegyster(idCamp, url, idForm) {
             type: 'POST',
             data: $(idForm).serialize(),
             success: function (respuesta) {
-              //alert(respuesta);
-              document.getElementById('idMesage_succes').style.display = 'block';
+                //alert(respuesta);
+                document.getElementById('idMesage_succes').style.display = 'block';
             },
             complete: function (jqXHR, textStatus) {
 
@@ -276,7 +317,7 @@ $(document).ready(function () {
                 $('#idButtonPart').attr("disabled", true);
                 document.getElementById('idMesage_sesion').style.display = 'block';
                 $('#idCloseSesion').click(function (e) {
-                   window.location.href = url_controller;
+                    window.location.href = url_controller;
                 });
             }
         });

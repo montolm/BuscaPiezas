@@ -50,7 +50,7 @@
                 <!-- Top Menu Items -->
                 <ul class="nav navbar-right top-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION['username']; ?><b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><?php echo $_SESSION['username']; ?><b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="#"><i class="fa fa-fw fa-user"></i> Perfil</a>
@@ -78,7 +78,7 @@
                             <a href="<?= site_url('/Create_parts_control/urlBP'); ?>"><i class="fa fa-wrench"></i> Registro</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-search"></i> Buscar</a>
+                            <a href="<?= site_url('/Search_parts_control/index'); ?>"><i class="fa fa-search"></i> Buscar</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-area-chart"></i> Reportes</a>

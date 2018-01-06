@@ -72,7 +72,7 @@
                             <a href="<?= site_url('/Create_parts_control/urlBP'); ?>"><i class="fa fa-wrench"></i> Registro</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-search"></i> Buscar</a>
+                            <a href="<?= site_url('/Search_parts_control/index'); ?>"><i class="fa fa-search"></i> Buscar</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-area-chart"></i> Reportes</a>
@@ -137,7 +137,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="#">
+                                <a href="<?= site_url('/Search_parts_control/index'); ?>">
                                     <div class="panel-footer">
                                         <span class="pull-left">Ir</span>
                                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
