@@ -16,7 +16,6 @@ class Create_part_model extends CI_Model {
     //put your code here
     public function __construct() {
         parent::__construct();
-        $this->load->database();
     }
 
     /* Inserta piza por tipo de vehiculo */
@@ -27,6 +26,19 @@ class Create_part_model extends CI_Model {
             return $insert;
         } else {
             return 0;
+        }
+    }
+
+    /* Inserta piza por tipo de vehiculo */
+
+    public function updateReplacementPart($idReplacement, $datos) {
+        $this->db->where('id_replacement', $idReplacement);
+        $this->db->update('replacement', $datos);
+        $affect = $this->db->affected_rows();
+        if ($affect > 0) {
+            return TRUE;
+        } else {
+            return FALSE;
         }
     }
 

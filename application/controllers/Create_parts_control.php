@@ -37,16 +37,16 @@ class Create_parts_control extends CI_Api {
         $id_state = $this->input->post('selectState');
         $id_part = $this->input->post('vehiclePart');
         $price_part = $this->input->post($id_part);
-        $comment_part = $this->input->post($id_part.'_comment');
+        $comment_part = $this->input->post($id_part . '_comment');
         $creation_date = date("y-m-d", time());
         $fec_actu = date("y-m-d", time());
         $mca_inh = 'N';
-        
+
 //        echo '$user_name '.$user_name.' $id_vehiclePart_Sum '.$id_vehiclePart_Sum.' $user_id_exist '.$user_id_exist.' $id_system '.$id_system.
 //                ' $id_vehicle_type '.$id_vehicle_type.' $id_state '.$id_state.' $id_part '.$id_part.' $price_part '.$price_part.' $comment_part '.$comment_part;
 //                
         if ($user_id_exist > 0) {
-            
+
             $datos = array("id_replacement" => $id_vehiclePart_Sum,
                 "id_system" => $id_system,
                 "id_vehicle_type" => $id_vehicle_type,
@@ -59,7 +59,7 @@ class Create_parts_control extends CI_Api {
                 "date_update" => $fec_actu,
                 "price" => $price_part,
                 "comment" => $comment_part);
-            
+
             $result = $this->Create_part_model->createReplacementPart($datos);
             $returnValue = $this->Api_model->getException($result);
 
@@ -68,7 +68,7 @@ class Create_parts_control extends CI_Api {
                 //$this->loadSesionModel($NameMake, NULL, $id_vehicle_make);
                 echo TRUE;
             } else {
-               echo FALSE;
+                echo FALSE;
             }
         } else {
             echo FALSE;

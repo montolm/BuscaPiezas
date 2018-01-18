@@ -13,7 +13,7 @@
         <div class="container" style="margin-left: 20%; padding-top: 2%;">
             <div id="idMesage_succes" class="alert alert-success alert-dismissable" style="display: none" >
                 <button type="button" id="idClose" class="close" data-dismiss="alert">&times;</button>
-                <strong>¡Listo!</strong> Registros guardado exitosamente.
+                <strong>¡Listo! </strong>actualizado exitosamente.
             </div>
             <div id="idMesage_sesion" class="alert alert-danger alert-dismissable" style="display: none" >
                 <button type="button" id="idCloseSesion" class="close" data-dismiss="alert">&times;</button>
@@ -24,7 +24,10 @@
                 <strong>¡Error!</strong> Error favor verificar.
             </div>
             <br>
-            <form id="idPartForm">
+            <form id="idSearchPartForm">
+                <div class="form-group hidden">
+                    <input class="form-control " type="text" id="idPartReplacement" name="partReplacement">
+                </div>
                 <div class="form-group col-xs-6 col-sm-5">
                     <label for="idSelectCategory">Sistemas:</label>
                     <select class="form-control" id="idSelectCategory" name="selectCategory">
@@ -66,6 +69,7 @@
 <!--                                    <th>
                                         <input type="checkbox" id="checkall" />
                                     </th>-->
+                                    <th>Seleccionar</th>
                                     <th>Vehiculos</th>
                                     <th>Marcas</th>
                                     <th>Modelos</th>
@@ -84,8 +88,7 @@
                             </div>
                         </div>
                         <div class="form-group col-xs-8 col-sm-8">
-                            <button type="button" class="btn btn-danger col-xs-2 " id="">Actualizar</button>
-                            <!--                            id=idButtonSavePart-->
+                            <button type="button" class="btn btn-danger col-xs-2 " id="idButtonUpdateParts">Actualizar</button>
                         </div>
                         <div class="form-group hidden">
                             <input class="form-control " type="text" id="idInputUser" name="inputUser" value="<?php echo $_SESSION['id_user']; ?>">
@@ -101,45 +104,5 @@
         <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
         <script src="<?= base_url() ?>js/Validate.js"></script>
         <script src="<?= base_url() ?>js/createParts.js"></script>
-        <script>
-            $(document).ready(function () {
-                $("#mytable #checkall").click(function () {
-                    if ($("#mytable #checkall").is(':checked')) {
-                        $("#mytable input[type=checkbox]").each(function () {
-                            $(this).prop("checked", true);
-                        });
-
-                    } else {
-                        $("#mytable input[type=checkbox]").each(function () {
-                            $(this).prop("checked", false);
-                        });
-                    }
-                });
-                $("[data-toggle=tooltip]").tooltip();
-            });
-        </script>
-
-<!--        <script>
-            $('#mytable').dataTable({
-                "paging": false,
-                "ordering": true,
-                "info": false,
-                "language": {
-                    "sLengthMenu": "Mostrar _MENU_ registros",
-                    "zeroRecords": "Nothing found - sorry",
-                    "info": "Showing page _PAGE_ of _PAGES_",
-                    "infoEmpty": "No records available",
-                    "infoFiltered": "(filtered from _MAX_ total records)",
-                    "sSearch": "Buscar:",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Último",
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    }
-
-                }
-            });
-        </script>-->
     </body>
 </html>
