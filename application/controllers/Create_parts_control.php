@@ -25,6 +25,7 @@ class Create_parts_control extends CI_Api {
 
     public function urlBP() {
         $this->loadView('create-parts');
+
     }
 
     public function createPart() {
@@ -43,7 +44,7 @@ class Create_parts_control extends CI_Api {
         $mca_inh = 'N';
 
 //        echo '$user_name '.$user_name.' $id_vehiclePart_Sum '.$id_vehiclePart_Sum.' $user_id_exist '.$user_id_exist.' $id_system '.$id_system.
-//                ' $id_vehicle_type '.$id_vehicle_type.' $id_state '.$id_state.' $id_part '.$id_part.' $price_part '.$price_part.' $comment_part '.$comment_part;
+//                ' $id_vehicle_type '.$id_vehicle_type.' $id_state '.$id_state.' $id_part '.$id_part.' $price_part '.$price_part.' $comment_part '.$comment_part.' $id_gas '.$id_gas;
 //                
         if ($user_id_exist > 0) {
 
@@ -65,8 +66,8 @@ class Create_parts_control extends CI_Api {
 
             if ($returnValue == 1) {
                 //$NameMake = $this->Api_model->consultMakeName($id_vehicle_make);
-                //$this->loadSesionModel($NameMake, NULL, $id_vehicle_make);
-                echo TRUE;
+               // $this->loadSesionModel($NameMake, NULL, $id_vehicle_make);
+               echo TRUE;
             } else {
                 echo FALSE;
             }

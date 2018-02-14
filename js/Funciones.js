@@ -199,7 +199,7 @@ function getModelGas(idModel) {
             selectGas.append('<option value="0" selected>Todos los combustibles</option>');
             $(data.gasForModel).each(function (i, v) {
                 // console.log(v.type_combustible);
-                selectGas.append('<option value="' + v.id_combustible_model + '">' + v.type_combustible + '</option>');
+                selectGas.append('<option value="' + v.id_combustible + '">' + v.type_combustible + '</option>');
             });
             selectGas.prop('disabled', false);
         }, error: function () {
@@ -305,7 +305,7 @@ function insertRegyster(idCamp, url, idForm) {
             type: 'POST',
             data: $(idForm).serialize(),
             success: function (respuesta) {
-                //alert(respuesta);
+                alert(respuesta);
                 document.getElementById('idMesage_succes').style.display = 'block';
             },
             complete: function (jqXHR, textStatus) {
